@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Photo Crop</title>
+    <link rel="stylesheet" href="croppie/croppie.css">
+    <link rel="stylesheet" href="styles.css">
+    <style media="screen">
+      body {
+        background: black;
+        color: white;
+      }
+      p {
+        visibility: visible;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div id="photo"></div>
+
+      <!-- CONTROLS -->
+      <div class="controls">
+        <p class="scale-text">Scale</p>
+        <a href="#">
+        <button class="rotate rotate-btn" data-deg="90"><img src="images/rotate.png" height="28" width="30" style="float: left;" alt="btn">Rotate</button></a>
+
+        <a href="uploading.html">
+        <button class="set-btn"><img src="images/set.png" height="28" width="30" style="float: left;" alt="btn">Set</button></a>
+      </div>
+
+
+
+    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="croppie/croppie.js"></script>
+    <script>
+
+      var vWidth = 200;
+      var vHeight = 200;
+
+      var vEl = document.getElementById('photo'),
+          vanilla = new Croppie(vEl, {
+          viewport: {
+            width: vWidth,
+            height: vHeight,
+            type: 'circle'
+          },
+          showZoomer: true,
+          enableOrientation: true
+      });
+      vanilla.bind({
+          url: 'images/crop.jpg',
+          orientation: 4,
+          zoom: 0
+      });
+
+      $('.rotate').on('click', function(ev) {
+          vanilla.rotate(parseInt($(this).data('deg')));
+      });
+    </script>
+  </body>
+</html>
